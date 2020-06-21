@@ -8,13 +8,12 @@ branches:
 before_script: ## 根据你所用的主题和自定义的不同，这里会有所不同
   - npm install -g hexo-cli # 在 CI 环境内安装 Hexo
   - npm install # 在根目录安装站点需要的依赖 
-  - npm install hexo-deployer-git --save 
 script: 
   - hexo generate # generate static files
 deploy: # 根据个人情况，这里会有所不同
   provider: pages
   skip_cleanup: true # 构建完成后不清除
-  token: 10206b110a9ce09d5186445499508cdbff818567 # 你刚刚设置的 Token
+  token: $GH_TOKEN # 你刚刚设置的 Token
   keep_history: true # 保存历史
   on:
     branch: hexo # hexo 站点源文件所在的 branch
