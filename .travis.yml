@@ -5,10 +5,12 @@ node_js:
 branches:
   only:
     - hexo # 只监控 hexo 的 branch
+cache:
+  directories:
+    - node_modules # 缓存 node_modules 加快构建速度
 before_script: ## 根据你所用的主题和自定义的不同，这里会有所不同
   - npm install -g hexo-cli # 在 CI 环境内安装 Hexo
   - npm install # 在根目录安装站点需要的依赖 
-  - npm install hexo-deployer-git --save 
 script: 
   - hexo generate # generate static files
 deploy: # 根据个人情况，这里会有所不同
@@ -16,6 +18,7 @@ deploy: # 根据个人情况，这里会有所不同
   skip_cleanup: true # 构建完成后不清除
   token: $GH_TOKEN # 你刚刚设置的 Token
   keep_history: true # 保存历史
+  fqdn: gangzhen.space # 自定义域名，使用 username.github.io 可删除
   on:
     branch: hexo # hexo 站点源文件所在的 branch
   local_dir: public 
